@@ -21,19 +21,21 @@ const {status, data: document} = useAsyncData("document-preview", getPdfFile);
 
 
 <template>
-  <div>
+  <div class="h-full">
     <scroll-area class="h-full">
-      <div v-if="status === 'pending' && !document" class="space-y-4 p-8">
-        <skeleton class="mx-auto h-[842px] w-[595px]"/>
-        <skeleton class="mx-auto h-[842px] w-[595px]"/>
-      </div>
-      <div v-else class="p-8 drop-shadow-md">
-        <div v-for="(_, index) in document.pages" :key="index" class="mb-4">
-          <VuePDF
-              :pdf="document.pdf"
-              :page="index + 1"
-              class="!flex justify-center"
-          />
+      <div>
+        <div v-if="status === 'pending' && !document" class="space-y-4 p-8">
+          <skeleton class="mx-auto h-[842px] w-[595px]"/>
+          <skeleton class="mx-auto h-[842px] w-[595px]"/>
+        </div>
+        <div v-else class="py-8 drop-shadow-md">
+          <div v-for="(_, index) in document.pages" :key="index" class="mb-4">
+            <VuePDF
+                :pdf="document.pdf"
+                :page="index + 1"
+                class="!flex justify-center"
+            />
+          </div>
         </div>
       </div>
     </scroll-area>
