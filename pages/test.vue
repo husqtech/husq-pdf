@@ -1,16 +1,13 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <p class="h-96">This is a test Document</p>
-  <p class="h-96">This is a test Document</p>
-  <p class="h-96">This is a test Document</p>
-  <p class="h-96">This is a test Document</p>
-  <p class="h-96">This is a test Document</p>
-  <p class="h-96">This is a test Document</p>
+  <p class="text-3xl">This is a test Document</p>
+  <p class="text-2xl">{{props.name}}</p>
 </template>
 
-<style scoped>
+<script setup lang="ts">
+  import type {TestProps} from "~/props/TestProps";
 
+  const props = useDocumentProps<TestProps>()
+</script>
+
+<style scoped>
 </style>
