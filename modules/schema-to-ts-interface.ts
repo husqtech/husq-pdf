@@ -1,10 +1,12 @@
-import { compileFromFile } from 'json-schema-to-typescript';
+import {compileFromFile} from 'json-schema-to-typescript';
 import fs from 'fs';
 import path from 'path';
 import chokidar from 'chokidar';
-import { defineNuxtModule, createResolver } from '@nuxt/kit';
+import {defineNuxtModule, createResolver} from '@nuxt/kit';
+import type {ViteDevServer} from "vite";
 
-interface ModuleOptions {}
+interface ModuleOptions {
+}
 
 export default defineNuxtModule<ModuleOptions>({
     meta: {
@@ -22,16 +24,35 @@ export default defineNuxtModule<ModuleOptions>({
 
         convertAllSchemas(schemaDir, typesDir);
 
-        if (nuxt.options.dev) {
-            chokidar.watch(schemaDir).on('change', (filePath: string) => {
-                const file = path.basename(filePath);
-                if (file.endsWith('.json')) {
-                    convertSchema(file, schemaDir, typesDir);
-                }
-            });
-        }
+        nuxt.hook('vite:serverCreated', (viteServer: ViteDevServer) => {
+            // Function to trigger HMR
+            const triggerHMR = () => {
+                viteServer.ws.send({
+                    type: 'update',
+                    updates: [
+                        {
+                            type: 'js-update',
+                            timestamp: Date.now(),
+                            path: '/layouts/develop.vue',
+                            acceptedPath: '/layouts/develop.vue'
+                        }
+                    ]
+                });
+            }
+
+            if (nuxt.options.dev) {
+                chokidar.watch(schemaDir).on('change', (filePath: string) => {
+                    const file = path.basename(filePath);
+                    if (file.endsWith('.json')) {
+                        convertSchema(file, schemaDir, typesDir);
+                        triggerHMR()
+                    }
+                });
+            }
+        })
     },
 });
+
 async function convertSchema(file: string, schemaDir: string, typesDir: string): Promise<void> {
     const filePath = path.resolve(schemaDir, file);
     const fileName = path.basename(file, '.json');
