@@ -9,6 +9,9 @@
         "name": {
             "type": "string"
         },
+        "car": {
+            "type": "string"
+        },
         "email": {
             "type": "string",
                 "format": "email"

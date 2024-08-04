@@ -11,7 +11,10 @@ export default defineEventHandler(async (event) => {
         }
         const documentPath = `http://localhost:3000/${document}`;
 
-        const pdfBuffer = await renderPdf(documentPath);
+        console.log(body)
+
+        const pdfBuffer = await renderPdf(documentPath, body);
+
 
         setResponseHeaders(event, {
             "Content-Type": "application/pdf",

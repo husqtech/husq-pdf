@@ -62,7 +62,7 @@ const isCollapsible = (value: any) => {
   return value.type === 'object' || value.type === 'array';
 };
 
-const {selectProp} =  useDocumentPropsOptions()
+const {selectProp} =  usePropOptions()
 
 const getFullKey = (key: string | number): string => {
   if(props.rootKeyPath == ""){

@@ -1,6 +1,6 @@
 <template>
   <div class="h-full">
-    <scroll-area class="h-full p-2">
+    <scroll-area class="h-full p-3">
       <p class="sticky text-sm">Document Props</p>
       <props-tree-entry :schema="schema.properties" :indent-level="0" root-key-path=""/>
     </scroll-area>
@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import type {Ref} from "vue";
-const {fetchSchema} = useDocumentPropsOptions()
+const {fetchSchema} = usePropOptions()
 const schema: Ref<any> = ref(await fetchSchema())
 </script>
 

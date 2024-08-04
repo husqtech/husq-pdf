@@ -9,4 +9,5 @@
 
 <script setup lang="ts">
   const layout = useLayoutMode()
+  useTheme()
 </script>

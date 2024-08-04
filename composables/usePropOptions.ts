@@ -1,6 +1,7 @@
 import { ref, reactive } from 'vue';
 import type { Ref } from 'vue';
 import { useCurrentDocument } from '~/composables/useCurrentDocument';
+import {useRefreshDocument} from "~/composables/useRefreshDocument";
 
 const selectedProp: Ref<{key: string, subSchema: any} | null> = ref<{key: string, subSchema: any} | null>(null);
 const props = reactive<Record<string, any>>({});
@@ -13,6 +14,7 @@ const updatePropValue = (fullKey: string, value: any) => {
         obj = obj[keys[i]];
     }
     obj[keys[keys.length - 1]] = value;
+    useRefreshDocument()
 };
 
 const selectProp = (fullKey: string, subSchema: any) => {
@@ -25,7 +27,7 @@ async function fetchSchema() {
     return await res.json();
 }
 
-export function useDocumentPropsOptions() {
+export function usePropOptions() {
     return {
         fetchSchema,
         selectedProp,

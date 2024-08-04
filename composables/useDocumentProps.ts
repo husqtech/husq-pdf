@@ -12,13 +12,5 @@ export function useDocumentProps<T>(): Ref<T> {
         }
     });
 
-    watch(documentProps, (newValue) => {
-        if (newValue !== null) {
-            localStorage.setItem(key, JSON.stringify(newValue));
-        } else {
-            localStorage.removeItem(key);
-        }
-    }, { deep: true });
-
     return documentProps;
 }
