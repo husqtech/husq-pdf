@@ -1,8 +1,9 @@
 <template>
   <div class="flex flex-col gap-1 mt-1">
     <div v-for="(value, key) in schema" :key="key">
-      <collapsible class="w-full" v-model:open="openStates[key]" :disabled="!isCollapsible(value)">
-        <collapsible-trigger class="w-full flex items-center gap-1.5  hover:bg-accent px-2 py-1 rounded">
+      <collapsible class="w-full" v-model:open="openStates[key]">
+        <collapsible-trigger class="w-full flex items-center gap-1.5 hover:bg-accent px-2 py-1 rounded"
+                             v-on:click="selectProp(getFullKey(key), value)">
           <div class="ml-5" v-for="i in indentLevel" :key="i"/>
 
           <div class="size-4 mr-1">
@@ -27,10 +28,12 @@
 
         <collapsible-content>
           <template v-if="value.type === 'object'">
-            <props-tree-entry :schema="value.properties" :indent-level="indentLevel + 1"/>
+            <props-tree-entry :schema="value.properties" :root-key-path="getFullKey(key)"
+                              :indent-level="indentLevel + 1"/>
           </template>
           <template v-else-if="value.type === 'array'">
-            <props-tree-entry :schema="value.items" :indent-level="indentLevel + 1"/>
+            <props-tree-entry :schema="value.items" :root-key-path="getFullKey(key)"
+                              :indent-level="indentLevel + 1"/>
           </template>
         </collapsible-content>
       </collapsible>
@@ -47,7 +50,7 @@ interface Schema {
   [key: string]: any;
 }
 
-const props = defineProps<{ schema: Schema, indentLevel: number }>();
+const props = defineProps<{ schema: Schema, indentLevel: number, rootKeyPath: string }>();
 
 const openStates = ref<{ [key: string]: boolean }>({});
 
@@ -58,4 +61,14 @@ for (const key in props.schema) {
 const isCollapsible = (value: any) => {
   return value.type === 'object' || value.type === 'array';
 };
+
+const {selectProp} =  useDocumentPropsOptions()
+
+const getFullKey = (key: string | number): string => {
+  if(props.rootKeyPath == ""){
+    return key.toString()
+  }
+
+  return `${props.rootKeyPath}.${key}`
+}
 </script>

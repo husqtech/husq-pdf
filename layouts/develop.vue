@@ -22,7 +22,9 @@ import PropsTree from "~/components/props-tree/props-tree.vue";
                 <document-preview/>
               </resizable-panel>
               <resizable-handle/>
-              <resizable-panel>Three</resizable-panel>
+              <resizable-panel>
+                <prop-options/>
+              </resizable-panel>
             </resizable-panel-group>
           </div>
         </div>

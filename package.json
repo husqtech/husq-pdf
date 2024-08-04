@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
     "@tato30/vue-pdf": "^1.10.0",
+    "@vueuse/core": "^10.11.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.424.0",
