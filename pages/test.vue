@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-  import * as TestProps from "~/.types/test";
+  import type {TestProps} from "~/.types/test";
 
   const props = useDocumentProps<TestProps>()
 

@@ -20,11 +20,28 @@ export default defineNuxtModule({
 
         async function convertSchema(file: string): Promise<void> {
             const filePath = path.resolve(schemaDir, file);
-            const outputPath = path.resolve(typesDir, file.replace('.json', '.ts'));
+            const fileName = path.basename(file, '.json');
+            const outputDTSPath = path.resolve(typesDir, `${fileName}.d.ts`);
+            const outputTSPath = path.resolve(typesDir, `${fileName}.ts`);
+
             try {
-                const ts = await compileFromFile(filePath);
-                fs.writeFileSync(outputPath, ts);
-                console.log(`Converted ${file} to ${outputPath}`);
+                const ts = await compileFromFile(filePath, {
+                    bannerComment: '',
+                    declareExternallyReferenced: true,
+                });
+
+                fs.writeFileSync(outputDTSPath, ts);
+                console.log(`Converted ${file} to ${outputDTSPath}`);
+
+                const interfaceNameMatch = ts.match(/export interface (\w+)/);
+                if (interfaceNameMatch) {
+                    const interfaceName = interfaceNameMatch[1];
+                    const tsContent = `import type { ${interfaceName} } from './${fileName}.d';\nexport type { ${interfaceName} as ${fileName.charAt(0).toUpperCase() + fileName.slice(1)}Props };`;
+                    fs.writeFileSync(outputTSPath, tsContent);
+                    console.log(`Created ${outputTSPath}`);
+                } else {
+                    console.error(`Could not find interface name in generated .d.ts for ${file}`);
+                }
             } catch (error) {
                 console.error(`Error converting ${file}:`, error);
             }
