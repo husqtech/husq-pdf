@@ -4,9 +4,10 @@
 </template>
 
 <script setup lang="ts">
-  import type {TestProps} from "~/props/TestProps";
+  import * as TestProps from "~/.types/test";
 
   const props = useDocumentProps<TestProps>()
+
 </script>
 
 <style scoped>

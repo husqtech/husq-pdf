@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "TestRequest",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string",
+                "format": "email"
+        },
+        "details": {
+            "type": "object",
+                "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "createdAt": {
+                    "type": "string",
+                        "format": "date-time"
+                }
+            }
+        },
+        "tags": {
+            "type": "array",
+                "items": {
+                "type": "string"
+            }
+        },
+        "metadata": {
+            "type": "object",
+                "properties": {
+                "author": {
+                    "type": "object",
+                        "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string",
+                                "format": "email"
+                        }
+                    }
+                },
+                "version": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
