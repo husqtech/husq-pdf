@@ -1,7 +1,5 @@
 import { ref, watch, onMounted } from 'vue';
 import type { Ref } from 'vue';
-import {useDocumentPropsOptions} from "~/composables/useDocumentPropsOptions";
-
 export function useDocumentProps<T>(): Ref<T> {
     const key = 'document_props';
 

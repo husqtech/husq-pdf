@@ -1,33 +1,10 @@
-import { ref } from 'vue';
 import type { Ref } from 'vue';
+import {useCurrentDocument} from "~/composables/useCurrentDocument";
+export async function useDocumentPropsOptions() {
+    const key = 'document_props';
+    const schemaName = useCurrentDocument()
+    const res = await fetch(`${schemaName}.json`);
+    const schema = await res.json()
 
-enum InputType {
-    TEXT = 'TEXT',
-    NUMBER = 'NUMBER',
-    CHECKBOX = 'CHECKBOX',
-    FIELDSET = 'FIELDSET',
-}
-
-interface FormField {
-    name: string;
-    type: InputType;
-    fields?: FormField[];
-}
-
-export function useDocumentPropsOptions() {
-    const propOptionFields: Ref<FormField[]> = ref([]);
-
-    function getKeys<T>(): Array<keyof T> {
-        return [] as Array<keyof T>;
-    }
-
-    function updatePropOptions<T>() {
-        const keys = getKeys<T>();
-        console.log("keys", keys);
-    }
-
-    return {
-        propOptionFields,
-        updatePropOptions,
-    };
+    return {schema}
 }

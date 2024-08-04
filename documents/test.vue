@@ -7,7 +7,6 @@
   import type {TestProps} from "~/.types/test";
 
   const props = useDocumentProps<TestProps>()
-
 </script>
 
 <style scoped>
