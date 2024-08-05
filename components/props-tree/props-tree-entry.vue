@@ -22,7 +22,11 @@
           <div class="flex flex-1 justify-between">
             <div>{{ key }}</div>
             <div>
-              <span class="truncate ml-5">{{ value.type }}{{ value.format ? ` (${value.format})` : '' }}</span>
+              <span class="truncate ml-5">
+                {{ value.type }}
+                {{ value.format ? ` (${value.format})` : '' }}
+                {{ value?.items?.type ? ` (${value.items.type})` : '' }}
+              </span>
             </div>
           </div>
         </collapsible-trigger>
