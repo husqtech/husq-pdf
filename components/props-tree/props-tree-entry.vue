@@ -2,16 +2,16 @@
   <div class="flex flex-col gap-1 mt-1">
     <div v-for="(value, key) in schema" :key="key">
       <collapsible class="w-full" v-model:open="openStates[key]">
-        <collapsible-trigger class="w-full flex items-center gap-1.5
+        <div class="w-full flex items-center gap-1.5 cursor-pointer
         hover:bg-accent px-2 py-1 rounded" :class="selectedProp?.key == key ? 'bg-accent' : ''"
-                             v-on:click="selectProp(getFullKey(key), value)">
+                             v-on:click="selectProp(getFullKey(key), value)" v-on:dblclick="openStates[key] = !openStates[key]">
           <div class="ml-5" v-for="i in indentLevel" :key="i"/>
-          <div class="size-4 mr-1">
-            <div v-if="isTypeObject(value)">
+          <collapsible-trigger class="size-5 mr-1">
+            <div v-if="isTypeObject(value)" class="size-4">
               <ChevronRight v-if="!openStates[key]" class="size-full text-primary"/>
               <ChevronDown v-else class="size-full text-primary"/>
             </div>
-          </div>
+          </collapsible-trigger>
 
           <div>
             <Folder v-if="isTypeObject(value)" class="size-4 text-primary"/>
@@ -19,7 +19,7 @@
             <Code v-else class="size-4 text-primary"/>
           </div>
 
-          <div class="flex flex-1 justify-between">
+          <div class="flex flex-1 justify-between select-none">
             <div>{{ key }}</div>
             <div>
               <span class="truncate ml-5">
@@ -29,7 +29,7 @@
               </span>
             </div>
           </div>
-        </collapsible-trigger>
+        </div>
 
         <collapsible-content>
           <template v-if="value.type === 'object'">
