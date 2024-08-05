@@ -5,10 +5,8 @@ import chokidar from 'chokidar';
 import {defineNuxtModule, createResolver} from '@nuxt/kit';
 import type {ViteDevServer} from "vite";
 
-interface ModuleOptions {
-}
 
-export default defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule({
     meta: {
         name: 'schema-to-ts-interface',
     },
