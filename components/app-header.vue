@@ -3,8 +3,9 @@
 </script>
 
 <template>
-  <div class="h-12 border-b w-full p-2">
-      HUSQ-PDF
+  <div class="h-12 border-b w-full flex justify-between px-3 items-center">
+      <p class="text-primary">HUSQ-PDF</p>
+      <theme-switch/>
   </div>
 </template>
 

@@ -13,6 +13,11 @@ const updatePropValue = (fullKey: string, value: any) => {
         if (!obj[keys[i]]) obj[keys[i]] = {};
         obj = obj[keys[i]];
     }
+
+    if(value === ""){
+        value = null
+    }
+
     obj[keys[keys.length - 1]] = value;
     useRefreshDocument()
 };
