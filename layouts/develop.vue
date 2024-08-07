@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import PropsTree from "~/components/props-tree/props-tree.vue";
-</script>
-
 <template>
   <div>
     <TooltipProvider>
@@ -10,7 +6,7 @@ import PropsTree from "~/components/props-tree/props-tree.vue";
 
         <div class="flex-1">
           <div class="h-full relative">
-            <div class="absolute top-0 bottom-0 w-screen">
+            <div class="absolute top-0 bottom-0 w-screen" :ref="useCurrentDocument()">
               <resizable-panel-group direction="horizontal">
                 <resizable-panel :min-size="10">
                   <props-tree/>
@@ -42,3 +38,7 @@ import PropsTree from "~/components/props-tree/props-tree.vue";
     </TooltipProvider>
   </div>
 </template>
+
+<script setup lang="ts">
+import PropsTree from "~/components/props-tree/props-tree.vue";
+</script>

@@ -15,5 +15,10 @@ export default defineNuxtConfig({
                 target: "esnext",
             },
         },
-    }
+    },
+    app: {
+        pageTransition: {
+            name: 'page',
+        },
+    },
 })
