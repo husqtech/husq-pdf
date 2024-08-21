@@ -1,33 +1,23 @@
 {
   "name": "husq-pdf",
   "private": true,
-  "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@radix-icons/vue": "^1.0.0",
-    "@tato30/vue-pdf": "^1.10.0",
-    "@vueuse/core": "^10.11.0",
-    "@vueuse/nuxt": "^10.11.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.424.0",
-    "nuxt": "^3.12.4",
-    "puppeteer": "^22.15.0",
-    "radix-vue": "^1.9.2",
-    "shadcn-nuxt": "^0.10.4",
-    "tailwind-merge": "^2.4.0",
-    "tailwindcss-animate": "^1.0.7",
-    "vue": "latest"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.12.1",
-    "json-schema-to-typescript": "^15.0.0",
-    "typescript": "^5.5.4"
-  }
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.14",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "yarn@1.22.19",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }

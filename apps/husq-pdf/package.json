@@ -1,0 +1,35 @@
+{
+  "name": "husq-pdf",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@husq/pdf": "*",
+    "@radix-icons/vue": "^1.0.0",
+    "@tato30/vue-pdf": "^1.10.0",
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/nuxt": "^10.11.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^0.424.0",
+    "nuxt": "^3.12.4",
+    "puppeteer": "^22.15.0",
+    "radix-vue": "^1.9.2",
+    "shadcn-nuxt": "^0.10.4",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "json-schema-to-typescript": "^15.0.0",
+    "typescript": "^5.5.4"
+  }
+}
