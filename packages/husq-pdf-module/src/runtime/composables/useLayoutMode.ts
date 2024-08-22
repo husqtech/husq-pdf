@@ -9,7 +9,7 @@ export enum Mode {
 export function useLayoutMode(): Ref<Mode> {
     const route = useRoute();
 
-    const hash = computed(() => route.hash);
+    const hash = computed(() => route?.hash);
 
     return computed(() => {
         switch (hash.value) {

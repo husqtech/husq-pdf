@@ -40,5 +40,13 @@
 </template>
 
 <script setup lang="ts">
-import PropsTree from "~/components/props-tree/props-tree.vue";
+import PropsTree from "../components/props-tree/props-tree.vue";
+import ResizablePanelGroup from "../components/ui/resizable/ResizablePanelGroup.vue";
+import {useCurrentDocument} from "../composables/useCurrentDocument";
+import ResizableHandle from "../components/ui/resizable/ResizableHandle.vue";
+import DocumentPreview from "../components/document-preview.vue";
+import PropOptions from "../components/prop-options/prop-options.vue";
+import RequestPreview from "../components/request-preview/request-preview.vue";
+import AppHeader from "../components/app-header.vue";
+import TooltipProvider from "../components/ui/tooltip/TooltipProvider.vue";
 </script>

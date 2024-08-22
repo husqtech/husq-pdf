@@ -1,4 +1,4 @@
-import { renderPdf } from "~/server/utils/renderPdf";
+import { renderPdf } from "../../utils/renderPdf";
 
 export default defineEventHandler(async (event) => {
     try {
